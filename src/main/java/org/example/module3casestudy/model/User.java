@@ -8,6 +8,7 @@ public class User {
     private String address;
     private String phone;
     private Role role;
+    private Cart cart;
 
     public User() {}
 
@@ -19,6 +20,18 @@ public class User {
         this.address = address;
         this.phone = phone;
         this.role = role;
+        this.cart = new Cart(userId); // Initialize cart with userId
+    }
+
+    public User(int i, String an, String mail, String number, Role userRole) {
+        this.userId = i;
+        this.name = an;
+        this.email = mail;
+        this.password = null; // Password is not set in this constructor
+        this.address = null; // Address is not set in this constructor
+        this.phone = number;
+        this.role = userRole;
+        this.cart = new Cart(i); // Initialize cart with userId
     }
 
     public int getUserId() {
@@ -75,5 +88,12 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

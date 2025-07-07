@@ -24,6 +24,9 @@ public class Cart {
         }
         items.add(new CartItem(product, quantity));
     }
+    public void removeItem(int productId) {
+        items.removeIf(item -> item.getProduct().getProductId() == productId);
+    }
 
     public double getTotalAmount() {
         double total = 0;
@@ -48,4 +51,5 @@ public class Cart {
     public void setItems(List<CartItem> items) {
         this.items = items;
     }
+
 }
