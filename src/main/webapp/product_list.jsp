@@ -10,14 +10,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Danh sách sản phẩm</title>
-
 </head>
 <body>
 <jsp:include page="/partials/header.jsp"/>
-<jsp:include page="/partials/menu.jsp"/>
 <div class="top-bar">
     <div>
-        <a href="product?action=add">Thêm sản phẩm</a>
+        <a href="products?action=/products/add">Thêm sản phẩm</a>
     </div>
 </div>
 
@@ -41,9 +39,9 @@
         <td><%= p.getPrice() %></td>
         <td><%= p.getQuantity() %></td>
         <td class="actions">
-            <a href="product?action=edit&id=<%= p.getProductId() %>">Sửa</a>
+            <a href="products?action=edit&id=<%= p.getProductId() %>">Sửa</a>
             |
-            <a href="product?action=delete&id=<%= p.getProductId() %>" onclick="return confirm('Xoá sản phẩm này?');">Xoá</a>
+            <a href="products?action=delete&id=<%= p.getProductId() %>" onclick="return confirm('Xoá sản phẩm này?');">Xoá</a>
         </td>
     </tr>
     <%

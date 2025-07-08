@@ -1,6 +1,6 @@
 <footer>
     <hr>
-    <p>&copy; 2025 - Ứng dụng Quản Lý Kho Hàng.</p>
+    <p>&copy; 2025 - Warehouse management application.</p>
 </footer>
 </body>
 </html>
