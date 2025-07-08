@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="org.example.module3casestudy.model.User" %>
 <%
@@ -15,3 +14,4 @@
   <a href="<%= request.getContextPath() %>/user?action=list"> Quản lý người dùng</a>
   <% } %>
 </div>
+
