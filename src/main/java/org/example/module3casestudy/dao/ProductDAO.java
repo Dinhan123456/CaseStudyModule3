@@ -22,33 +22,31 @@ public class ProductDAO {
                 Category category = categoryDAO.findById(rs.getInt("category_id"));
                 Product p = new Product(
                         rs.getInt("product_id"),
-                        rs.getString("product_name"),
+                        rs.getString("name"),
                         rs.getString("description"),
                         rs.getDouble("price"),
                         rs.getInt("quantity"),
-                        rs.getString("image"),
-                        category
+                        category // Removed image field
                 );
                 list.add(p);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error interacting with the database", e);
         }
         return list;
     }
 
     public void insert(Product p) {
-        String sql = "INSERT INTO product (product_name, description, price, quantity, image, category_id) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO product (name, description, price, quantity, category_id) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getProductName());
             ps.setString(2, p.getDescription());
             ps.setDouble(3, p.getPrice());
             ps.setInt(4, p.getQuantity());
-            ps.setString(5, p.getImage());
-            ps.setInt(6, p.getCategory().getCategoryId());
+            ps.setInt(5, p.getCategory().getCategoryId());
             ps.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error interacting with the database", e);
         }
     }
 
@@ -59,7 +57,7 @@ public class ProductDAO {
             ps.setInt(2, productId);
             ps.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error interacting with the database", e);
         }
     }
 
@@ -74,18 +72,46 @@ public class ProductDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                product = new Product();
-                product.setProductId(rs.getInt("product_id"));
-                product.setProductName(rs.getString("name"));
-                product.setPrice(rs.getDouble("price"));
-                product.setQuantity(rs.getInt("stock"));
-                // ... các trường khác nếu có
+                Category category = categoryDAO.findById(rs.getInt("category_id"));
+                product = new Product(
+                        rs.getInt("product_id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getDouble("price"),
+                        rs.getInt("quantity"),
+                        category // Removed image field
+                );
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error interacting with the database", e);
         }
 
         return product;
+    }
+
+    public void delete(int id) {
+        String sql = "DELETE FROM product WHERE product_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting product", e);
+        }
+    }
+
+    public void update(Product p) {
+        String sql = "UPDATE product SET name = ?, description = ?, price = ?, quantity = ?, category_id = ? WHERE product_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, p.getProductName());
+            ps.setString(2, p.getDescription());
+            ps.setDouble(3, p.getPrice());
+            ps.setInt(4, p.getQuantity());
+            ps.setInt(5, p.getCategory().getCategoryId());
+            ps.setInt(6, p.getProductId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating product", e);
+        }
     }
 }

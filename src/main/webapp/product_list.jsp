@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="org.example.module3casestudy.model.Product" %>
 <%
-    List<Product> products = (List<Product>) request.getAttribute("products");
+    List<Product> products = (List<Product>) request.getAttribute("productList");
 %>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
 <jsp:include page="/partials/header.jsp"/>
 <div class="top-bar">
     <div>
-        <a href="products?action=/products/add">Thêm sản phẩm</a>
+        <a href="products?action=add">Thêm sản phẩm</a>
     </div>
 </div>
 

@@ -29,10 +29,7 @@
             <td><strong>Tên sản phẩm:</strong></td>
             <td><%= product.getProductName() %></td>
         </tr>
-        <tr>
-            <td><strong>Hình ảnh:</strong></td>
-            <td><img src="<%= product.getImage() %>" alt="<%= product.getProductName() %>" width="100"></td>
-        </tr>
+        
         <tr>
             <td><strong>Giá:</strong></td>
             <td><%= product.getPrice() %> VND</td>

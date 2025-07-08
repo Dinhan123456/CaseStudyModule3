@@ -17,11 +17,11 @@ public class CategoryDAO {
         String sql = "SELECT * FROM category";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                Category c = new Category(rs.getInt("category_id"), rs.getString("category_name"));
+                Category c = new Category(rs.getInt("category_id"), rs.getString("name"));
                 list.add(c);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error interacting with the database", e);
         }
         return list;
     }
@@ -32,11 +32,11 @@ public class CategoryDAO {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return new Category(rs.getInt("category_id"), rs.getString("category_name"));
+                    return new Category(rs.getInt("category_id"), rs.getString("name"));
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error interacting with the database", e);
         }
         return null;
     }
