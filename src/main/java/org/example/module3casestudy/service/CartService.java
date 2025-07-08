@@ -4,16 +4,16 @@ import org.example.module3casestudy.dao.CartDAO;
 import org.example.module3casestudy.model.*;
 
 public class CartService {
-    private CartDAO cartDAO = new CartDAO();
+    private final CartDAO cartDAO = new CartDAO();
 
     public Cart getCartByUserId(int userId) {
         return cartDAO.getCartByUserId(userId);
     }
 
     public void addToCart(int userId, Product product, int quantity) {
-        Cart cart = getCartByUserId(userId);
-        cart.addItem(product, quantity);
-        cartDAO.saveCart(cart);
+        Cart cart = cartDAO.getCartByUserId(userId);
+        cart.addItem(product, quantity); // xử lý cộng dồn
+        cartDAO.saveCart(cart); // overwrite toàn bộ cartitem
     }
 
     public void clearCart(int userId) {
@@ -21,9 +21,6 @@ public class CartService {
     }
 
     public void removeFromCart(int userId, int productId) {
-        Cart cart = getCartByUserId(userId);
-        cart.removeItem(productId);
-        cartDAO.saveCart(cart);
+        cartDAO.removeItem(userId, productId);
     }
-
 }

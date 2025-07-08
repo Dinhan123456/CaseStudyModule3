@@ -14,4 +14,8 @@ public class ProductService {
     public void addProduct(Product product) {
         productDAO.insert(product);
     }
+
+    public Product getById(int id) {
+        return productDAO.findById(id);
+    }
 }

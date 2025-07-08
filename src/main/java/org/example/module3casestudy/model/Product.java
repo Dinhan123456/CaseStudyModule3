@@ -9,7 +9,8 @@ public class Product {
     private String image;
     private Category category;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(int productId, String productName, String description, double price, int quantity, String image, Category category) {
         this.productId = productId;
@@ -19,11 +20,6 @@ public class Product {
         this.quantity = quantity;
         this.image = image;
         this.category = category;
-    }
-    public Product(int productId, String productName, double price) {
-        this.productId = productId;
-        this.productName = productName;
-        this.price = price;
     }
 
     public int getProductId() {
@@ -81,7 +77,6 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
 
     public int getStock() {
         return quantity;
