@@ -1,11 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page import="org.example.module3casestudy.model.User" %>
 <%
     User user = (User) session.getAttribute("user");
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <title><%= request.getAttribute("title") != null ? request.getAttribute("title") : "Trang web quản lý kho" %>
@@ -16,7 +16,7 @@
 
 <div class="navbar">
     <div class="navbar-left">
-        <a href="<%= request.getContextPath() %>/home.jsp"> Trang chủ</a>
+        <a href="<%= request.getContextPath() %>/home.jsp">Trang chủ</a>
     </div>
     <div class="navbar-right">
         <% if (user != null) { %>

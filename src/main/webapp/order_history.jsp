@@ -1,6 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Lịch sử đơn hàng</title>
@@ -31,6 +30,6 @@
     </table>
 </c:if>
 
-<a href="order_success.jsp">Quay lại trang giỏ hàng</a>
+<a href="cart.jsp">Quay lại giỏ hàng</a>
 </body>
 </html>

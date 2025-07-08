@@ -18,12 +18,16 @@ public class CartController extends HttpServlet {
     private CartService cartService = new CartService();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+
         try {
             int userId = Integer.parseInt(req.getParameter("userId"));
             int productId = Integer.parseInt(req.getParameter("productId"));
             int quantity = Integer.parseInt(req.getParameter("quantity"));
             String action = req.getParameter("action");
-    
+
             // Nếu là hành động xóa
             if ("remove".equals(action)) {
                 cartService.removeFromCart(userId, productId);
@@ -51,7 +55,7 @@ public class CartController extends HttpServlet {
             }
 
             // Validate: kiểm tra hàng còn đủ không
-            if (product.getPrice() < quantity) {
+            if (product.getQuantity() < quantity) {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Số lượng vượt quá số lượng còn trong kho.");
                 return;
             }
@@ -66,6 +70,10 @@ public class CartController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+
         int userId = Integer.parseInt(req.getParameter("userId"));
         Cart cart = cartService.getCartByUserId(userId);
         req.setAttribute("cart", cart);

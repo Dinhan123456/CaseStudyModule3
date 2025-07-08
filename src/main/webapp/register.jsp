@@ -12,11 +12,9 @@
     <label>Mật khẩu:</label><input type="password" name="password"><br>
     <label>Địa chỉ:</label><input type="text" name="address"><br>
     <label>Số điện thoại:</label><input type="text" name="phone"><br>
-
-    <!-- Bỏ dropdown role đi -->
     <input type="submit" value="Đăng ký">
 </form>
 
-<p>Đã có tài khoản? <a href="user?action=showRegister">Đăng ký</a></p>
+<p>Đã có tài khoản? <a href="login.jsp">Đăng nhập</a></p>
 </body>
 </html>

@@ -14,6 +14,6 @@
 <c:if test="${param.error == '1'}">
     <p style="color:red;">Sai email hoặc mật khẩu!</p>
 </c:if>
-<p>Bạn chưa có tài khoản? <a href="register.jsp">Đăng ký</a></p>
+<p>Bạn chưa có tài khoản? <a href="user?action=showRegister">Đăng ký</a></p>
 </body>
 </html>

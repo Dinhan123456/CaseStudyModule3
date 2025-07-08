@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="partials/header.jsp" %>
-<%@ include file="partials/menu.jsp" %>
+<%@ include file="/partials/header.jsp" %>
+<%@ include file="/partials/menu.jsp" %>
 
 <h2>Danh sách sản phẩm</h2>
 
@@ -27,13 +27,11 @@
             <td>${p.description}</td>
             <td>${p.price}</td>
             <td>${p.quantity}</td>
-            <td>
-                <img src="${p.image}" width="60" height="60" alt="Ảnh sản phẩm"/>
-            </td>
+            <td><img src="${p.image}" width="60" height="60" alt="Ảnh sản phẩm"/></td>
             <td>${p.category.categoryName}</td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 
-<%@ include file="partials/footer.jsp" %>
+<%@ include file="/partials/footer.jsp" %>
