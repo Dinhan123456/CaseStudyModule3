@@ -9,7 +9,8 @@ public class User {
     private String phone;
     private Role role;
 
-    public User() {}
+    public User() {
+    }
 
     public User(int userId, String name, String email, String password, String address, String phone, Role role) {
         this.userId = userId;
