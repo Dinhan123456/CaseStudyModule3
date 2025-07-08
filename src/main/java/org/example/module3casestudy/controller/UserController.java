@@ -69,13 +69,14 @@ public class UserController extends HttpServlet {
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
 
-        int roleId = Integer.parseInt(request.getParameter("roleId")); // Lấy roleId từ form
-        Role role = roleDAO.findById(roleId); // Lấy đối tượng Role theo ID
-
+        // GÁN MẶC ĐỊNH ROLE "User" luôn
+        Role role = roleDAO.getDefaultRole(); // Đừng dùng select-box nữa
         User user = new User(0, name, email, password, address, phone, role);
+
         userService.register(user);
         response.sendRedirect("login.jsp");
     }
+
 
 
 

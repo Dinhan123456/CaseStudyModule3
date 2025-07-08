@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoleDAO {
-    private final String jdbcURL = "jdbc:mysql://localhost:3306/khohangmini";
+    private final String jdbcURL = "jdbc:mysql://192.168.7.122/khohangmini";
     private final String jdbcUsername = "codegym";
-    private final String jdbcPassword = "raisingthebar";
+    private final String jdbcPassword = "codegym";
 
     private Connection getConnection() throws SQLException {
         try {
@@ -30,8 +30,9 @@ public class RoleDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new Role(2, "User"); // fallback
+        return new Role(2, "User"); // fallback nếu DB lỗi
     }
+
 
     public List<Role> selectAll() {
         List<Role> roles = new ArrayList<>();
