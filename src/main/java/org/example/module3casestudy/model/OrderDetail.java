@@ -1,3 +1,4 @@
+
 package org.example.module3casestudy.model;
 
 public class OrderDetail {

@@ -6,9 +6,9 @@ import org.example.module3casestudy.model.*;
 import java.util.List;
 
 public class OrderService {
-    private OrderDAO orderDAO = new OrderDAO();
-    private OrderDetailDAO detailDAO = new OrderDetailDAO();
-    private CartService cartService = new CartService();
+    private final OrderDAO orderDAO = new OrderDAO();
+    private final OrderDetailDAO detailDAO = new OrderDetailDAO();
+    private final CartService cartService = new CartService();
 
     public Order placeOrder(User user) {
         Cart cart = cartService.getCartByUserId(user.getUserId());
@@ -16,6 +16,7 @@ public class OrderService {
 
         double total = cart.getTotalAmount();
         Order order = orderDAO.createOrder(user, total);
+        if (order == null) return null;
 
         for (CartItem item : cart.getItems()) {
             detailDAO.saveOrderDetail(order, item);

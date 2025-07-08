@@ -8,6 +8,11 @@ import java.util.List;
 public class UserService {
     private final UserDAO userDAO = new UserDAO();
 
+    public User getById(int id) {
+        return userDAO.findById(id);
+    }
+
+
     public void register(User user) {
         userDAO.insert(user);
     }
@@ -19,4 +24,5 @@ public class UserService {
     public List<User> getAll() {
         return userDAO.selectAll();
     }
+
 }
