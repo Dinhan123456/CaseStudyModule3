@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoleDAO {
-    private final String jdbcURL = "jdbc:mysql://192.168.7.122/khohangmini";
-    private final String jdbcUsername = "codegym";
+//    private final String jdbcURL = "jdbc:mysql://localhost:3306/khohangmini";
+    //    private final String jdbcPassword = "raisingthebar";
+private final String jdbcURL = "jdbc:mysql://192.168.7.122:3306/khohangmini";
     private final String jdbcPassword = "codegym";
+    private final String jdbcUsername = "codegym";
 
     private Connection getConnection() throws SQLException {
         try {
