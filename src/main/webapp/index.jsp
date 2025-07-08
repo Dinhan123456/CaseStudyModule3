@@ -1,13 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Trang chủ</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+    <h2>Chào mừng đến với hệ thống quản lý kho hàng mini!</h2>
+    <a href="dashboard">Vào trang Dashboard</a>
 </body>
 </html>
