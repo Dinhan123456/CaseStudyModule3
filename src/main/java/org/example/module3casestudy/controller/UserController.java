@@ -87,7 +87,7 @@ public class UserController extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            response.sendRedirect("view/home.jsp");
+            response.sendRedirect("home.jsp");
         } else {
             response.sendRedirect("login.jsp?error=1");
         }
