@@ -31,6 +31,6 @@
   </table>
 </c:if>
 
-<a href="order_success.jsp">Quay lại trang giỏ hàng</a>
+<a href="view/home.jsp">Quay lại trang chủ</a>
 </body>
 </html>

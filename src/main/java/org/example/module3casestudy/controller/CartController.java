@@ -51,7 +51,7 @@ public class CartController extends HttpServlet {
             }
 
             // Validate: kiểm tra hàng còn đủ không
-            if (product.getPrice() < quantity) {
+            if (product.getStock() < quantity) {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Số lượng vượt quá số lượng còn trong kho.");
                 return;
             }
@@ -66,9 +66,19 @@ public class CartController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userId"));
-        Cart cart = cartService.getCartByUserId(userId);
-        req.setAttribute("cart", cart);
-        req.getRequestDispatcher("cart.jsp").forward(req, resp);
+        try {
+            String userIdParam = req.getParameter("userId");
+            if (userIdParam == null) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thiếu thông tin userId");
+                return;
+            }
+
+            int userId = Integer.parseInt(userIdParam);
+            Cart cart = cartService.getCartByUserId(userId);
+            req.setAttribute("cart", cart);
+            req.getRequestDispatcher("cart.jsp").forward(req, resp);
+        } catch (NumberFormatException e) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "userId không hợp lệ");
+        }
     }
 }
