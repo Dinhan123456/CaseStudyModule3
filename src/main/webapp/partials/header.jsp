@@ -16,7 +16,7 @@
 
 <div class="navbar">
     <div class="navbar-left">
-        <a href="<%= request.getContextPath() %>/view/home.jsp"> Trang chủ</a>
+        <a href="<%= request.getContextPath() %>/home.jsp"> Trang chủ</a>
     </div>
     <div class="navbar-right">
         <% if (user != null) { %>
@@ -28,4 +28,3 @@
         <% } %>
     </div>
 </div>
-

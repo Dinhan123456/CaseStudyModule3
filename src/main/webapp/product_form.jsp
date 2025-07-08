@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../partials/header.jsp" %>
-<%@ include file="../partials/menu.jsp" %>
+<%@ include file="partials/header.jsp" %>
+<%@ include file="partials/menu.jsp" %>
 
 <h2>Thêm sản phẩm mới</h2>
 
@@ -31,4 +31,4 @@
     <input type="submit" value="Thêm mới">
 </form>
 
-<%@ include file="../partials/footer.jsp" %>
+<%@ include file="partials/footer.jsp" %>
