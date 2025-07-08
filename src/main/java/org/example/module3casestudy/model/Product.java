@@ -20,6 +20,11 @@ public class Product {
         this.image = image;
         this.category = category;
     }
+    public Product(int productId, String productName, double price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+    }
 
     public int getProductId() {
         return productId;
@@ -78,4 +83,7 @@ public class Product {
     }
 
 
+    public int getStock() {
+        return quantity;
+    }
 }

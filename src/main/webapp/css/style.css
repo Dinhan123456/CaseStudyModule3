@@ -1,0 +1,81 @@
+/* Reset & base */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f0f2f5;
+}
+
+/* Dashboard container */
+.dashboard {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Heading */
+.dashboard h2 {
+    color: #2c3e50;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.dashboard p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* Menu buttons */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.menu a {
+    display: block;
+    width: 80%;
+    max-width: 400px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #2980b9;
+}
+
+/* Header & Footer style (if used via include) */
+header, footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 16px;
+    text-align: center;
+    font-size: 18px;
+}
+
+footer {
+    margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .dashboard {
+        padding: 20px;
+    }
+
+    .menu a {
+        width: 100%;
+    }
+}
