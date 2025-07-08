@@ -1,10 +1,10 @@
 package org.example.module3casestudy.controller;
 
+import org.example.module3casestudy.model.Cart;
 import org.example.module3casestudy.model.Product;
 import org.example.module3casestudy.model.ProductDatabase;
 import org.example.module3casestudy.model.UserDatabase;
 import org.example.module3casestudy.service.CartService;
-import org.example.module3casestudy.model.Cart;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +18,10 @@ public class CartController extends HttpServlet {
     private CartService cartService = new CartService();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+
         try {
             int userId = Integer.parseInt(req.getParameter("userId"));
             int productId = Integer.parseInt(req.getParameter("productId"));
@@ -51,7 +55,7 @@ public class CartController extends HttpServlet {
             }
 
             // Validate: kiểm tra hàng còn đủ không
-            if (product.getStock() < quantity) {
+            if (product.getQuantity() < quantity) {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Số lượng vượt quá số lượng còn trong kho.");
                 return;
             }
@@ -66,19 +70,13 @@ public class CartController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            String userIdParam = req.getParameter("userId");
-            if (userIdParam == null) {
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Thiếu thông tin userId");
-                return;
-            }
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
 
-            int userId = Integer.parseInt(userIdParam);
-            Cart cart = cartService.getCartByUserId(userId);
-            req.setAttribute("cart", cart);
-            req.getRequestDispatcher("cart.jsp").forward(req, resp);
-        } catch (NumberFormatException e) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "userId không hợp lệ");
-        }
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        Cart cart = cartService.getCartByUserId(userId);
+        req.setAttribute("cart", cart);
+        req.getRequestDispatcher("cart.jsp").forward(req, resp);
     }
 }

@@ -1,75 +1,42 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="org.example.module3casestudy.model.User" %>
 <%
     User user = (User) session.getAttribute("user");
-    if (user == null) {
-        response.sendRedirect("login.jsp");
-        return;
-    }
-
-    String roleName = user.getRole().getRoleName(); // "ADMIN" hoặc "USER"
+    String roleName = (user != null && user.getRole() != null) ? user.getRole().getRoleName() : "";
+    request.setAttribute("roleName", roleName);
 %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title><%= request.getAttribute("title") != null ? request.getAttribute("title") : "Trang web quản lý kho" %>
-    </title>
-    <style>
-        /* Navbar styles */
-        .navbar {
-            background-color: #2c3e50;
-            color: white;
-            padding: 12px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="${pageContext.request.contextPath}/home.jsp">
+            <i class="bi bi-house-door"></i> Trang chủ
+        </a>
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin-left: 16px;
-            font-weight: 500;
-        }
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        .navbar a:hover {
-            text-decoration: underline;
-        }
-
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .logout-btn {
-            background-color: #e74c3c;
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-
-        .logout-btn:hover {
-            background-color: #c0392b;
-        }
-
-    </style>
-</head>
-<body>
-
-<div class="navbar">
-    <div class="navbar-left">
-        <a href="<%= request.getContextPath() %>/home.jsp"> Trang chủ</a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                <% if (user != null) { %>
+                <li class="nav-item">
+                    <span class="nav-link text-dark">
+                        <i class="bi bi-person"></i> Xin chào, <strong><%= user.getName() %></strong>
+                    </span>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-sm btn-outline-danger ms-2" href="${pageContext.request.contextPath}/user?action=logout">
+                        <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                    </a>
+                </li>
+                <% } else { %>
+                <li class="nav-item">
+                    <a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/login.jsp">
+                        <i class="bi bi-box-arrow-in-right"></i> Đăng nhập
+                    </a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
     </div>
-    <div class="navbar-right">
-        <% if (user != null) { %>
-        <span>Xin chào, <strong><%= user.getName() %></strong></span>
-        <a href="<%= request.getContextPath() %>/user?action=logout" class="logout-btn">Đăng xuất</a>
-        <% } %>
-    </div>
-</div>
-
+</nav>

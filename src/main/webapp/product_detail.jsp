@@ -12,54 +12,72 @@
     <title>Chi tiết sản phẩm</title>
 </head>
 <body>
-<jsp:include page="/partials/header.jsp"/>
-<jsp:include page="/partials/menu.jsp"/>
-<div class="container">
-    <h2>CHI TIẾT SẢN PHẨM</h2>
+<jsp:include page="/partials/header.jsp" />
 
-    <%
-        if (product != null) {
-    %>
-    <table>
-        <tr>
-            <td><strong>ID:</strong></td>
-            <td><%= product.getProductId() %></td>
-        </tr>
-        <tr>
-            <td><strong>Tên sản phẩm:</strong></td>
-            <td><%= product.getProductName() %></td>
-        </tr>
-        <tr>
-            <td><strong>Hình ảnh:</strong></td>
-            <td><img src="<%= product.getImage() %>" alt="<%= product.getProductName() %>" width="100"></td>
-        </tr>
-        <tr>
-            <td><strong>Giá:</strong></td>
-            <td><%= product.getPrice() %> VND</td>
-        </tr>
-        <tr>
-            <td><strong>Số lượng:</strong></td>
-            <td><%= product.getQuantity() %></td>
-        </tr>
-        <tr>
-            <td><strong>Mô tả:</strong></td>
-            <td><%= product.getDescription() %></td>
-        </tr>
-        <tr>
-            <td><strong>Danh mục</strong></td>
-            <td><%= product.getCategory().getCategoryName() %></td>
-        </tr>
-    </table>
-    <%
-    } else {
-    %>
-    <p style="color:red; text-align:center;">Không tìm thấy sản phẩm.</p>
-    <%
-        }
-    %>
-    <a href="product?action=list" class="btn"> Quay lại danh sách</a>
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">
+                        <i class="bi bi-box"></i> Chi tiết sản phẩm
+                    </h2>
+
+                    <% if (product != null) { %>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="<%= product.getImage() %>"
+                                 alt="<%= product.getProductName() %>"
+                                 class="img-fluid rounded mb-3">
+                        </div>
+                        <div class="col-md-8">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th width="30%">ID:</th>
+                                    <td><%= product.getProductId() %></td>
+                                </tr>
+                                <tr>
+                                    <th>Tên sản phẩm:</th>
+                                    <td><%= product.getProductName() %></td>
+                                </tr>
+                                <tr>
+                                    <th>Giá:</th>
+                                    <td><%= String.format("%,d", product.getPrice()) %>₫</td>
+                                </tr>
+                                <tr>
+                                    <th>Số lượng:</th>
+                                    <td><%= product.getQuantity() %></td>
+                                </tr>
+                                <tr>
+                                    <th>Danh mục:</th>
+                                    <td><%= product.getCategory().getCategoryName() %></td>
+                                </tr>
+                                <tr>
+                                    <th>Mô tả:</th>
+                                    <td><%= product.getDescription() %></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <% } else { %>
+                    <div class="text-center text-muted py-5">
+                        <i class="bi bi-exclamation-circle display-1"></i>
+                        <p class="mt-3">Không tìm thấy sản phẩm.</p>
+                    </div>
+                    <% } %>
+
+                    <div class="text-center mt-4">
+                        <a href="products?action=list" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Quay lại danh sách
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<jsp:include page="/partials/footer.jsp"/>
+
+<jsp:include page="/partials/footer.jsp" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

@@ -82,8 +82,6 @@ public class UserController extends HttpServlet {
     }
 
 
-
-
     private void loginUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");

@@ -1,10 +1,16 @@
 package org.example.module3casestudy.controller;
 
-import org.example.module3casestudy.model.*;
+import org.example.module3casestudy.model.Cart;
+import org.example.module3casestudy.model.Order;
+import org.example.module3casestudy.model.User;
+import org.example.module3casestudy.model.UserDatabase;
 import org.example.module3casestudy.service.OrderService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/checkout")
@@ -13,6 +19,10 @@ public class OrderController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+
         try {
             int userId = Integer.parseInt(req.getParameter("userId"));
             String paymentMethod = req.getParameter("paymentMethod");
