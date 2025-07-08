@@ -12,8 +12,15 @@
   Mật khẩu: <input type="password" name="password" required><br><br>
   Địa chỉ: <input type="text" name="address"><br><br>
   Số điện thoại: <input type="text" name="phone"><br><br>
+  Vai trò:
+  <select name="roleId" required>
+    <c:forEach var="role" items="${roles}">
+      <option value="${role.roleId}">${role.roleName}</option>
+    </c:forEach>
+  </select>
+  <br><br>
   <input type="submit" value="Đăng ký">
 </form>
-<p>Đã có tài khoản? <a href="login.jsp">Đăng nhập</a></p>
+<p>Đã có tài khoản? <a href="user?action=showRegister">Đăng ký</a></p>
 </body>
 </html>

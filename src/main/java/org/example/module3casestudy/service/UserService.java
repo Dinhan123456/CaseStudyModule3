@@ -3,13 +3,12 @@ package org.example.module3casestudy.service;
 import org.example.module3casestudy.dao.UserDAO;
 import org.example.module3casestudy.model.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserService {
-    private UserDAO userDAO = new UserDAO();
+    private final UserDAO userDAO = new UserDAO();
 
-    public void register(User user) throws SQLException {
+    public void register(User user) {
         userDAO.insert(user);
     }
 
