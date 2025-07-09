@@ -3,7 +3,6 @@ package org.example.module3casestudy.controller;
 import org.example.module3casestudy.model.Cart;
 import org.example.module3casestudy.model.Order;
 import org.example.module3casestudy.model.User;
-import org.example.module3casestudy.model.UserDatabase;
 import org.example.module3casestudy.service.OrderService;
 
 import javax.servlet.ServletException;

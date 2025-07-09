@@ -2,8 +2,6 @@ package org.example.module3casestudy.controller;
 
 import org.example.module3casestudy.model.Cart;
 import org.example.module3casestudy.model.Product;
-import org.example.module3casestudy.model.ProductDatabase;
-import org.example.module3casestudy.model.UserDatabase;
 import org.example.module3casestudy.service.CartService;
 
 import javax.servlet.ServletException;
