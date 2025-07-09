@@ -34,6 +34,11 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Xác nhận mật khẩu</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="address" class="form-label">Địa chỉ</label>
                             <input type="text" class="form-control" id="address" name="address" required>
                         </div>
@@ -61,5 +66,118 @@
         </div>
     </div>
 </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const phoneInput = document.getElementById('phone');
+
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const passwordRegex = /^.{6,}$/;
+            // Basic regex for Vietnamese phone numbers (starts with 0 or +84, followed by 3/5/7/8/9 and 8 digits)
+            const phoneRegex = /^0[1-9][0-9]{8}$/;
+
+            function displayError(inputElement, message) {
+                let errorDiv = inputElement.nextElementSibling;
+                if (!errorDiv || !errorDiv.classList.contains('invalid-feedback')) {
+                    errorDiv = document.createElement('div');
+                    errorDiv.classList.add('invalid-feedback');
+                    inputElement.parentNode.insertBefore(errorDiv, inputElement.nextSibling);
+                }
+                errorDiv.textContent = message;
+                inputElement.classList.add('is-invalid');
+            }
+
+            function clearError(inputElement) {
+                const errorDiv = inputElement.nextElementSibling;
+                if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
+                    errorDiv.remove();
+                }
+                inputElement.classList.remove('is-invalid');
+            }
+
+            function validateEmail() {
+                const email = emailInput.value.trim();
+                if (!emailRegex.test(email)) {
+                    displayError(emailInput, 'Email không hợp lệ.');
+                    return false;
+                } else {
+                    clearError(emailInput);
+                    return true;
+                }
+            }
+
+            function validatePassword() {
+                const password = passwordInput.value.trim();
+                if (!passwordRegex.test(password)) {
+                    displayError(passwordInput, 'Mật khẩu phải có ít nhất 6 ký tự.');
+                    return false;
+                } else {
+                    clearError(passwordInput);
+                    return true;
+                }
+            }
+
+            function validateConfirmPassword() {
+                const password = passwordInput.value.trim();
+                const confirmPassword = confirmPasswordInput.value.trim();
+                if (password !== confirmPassword) {
+                    displayError(confirmPasswordInput, 'Mật khẩu xác nhận không khớp.');
+                    return false;
+                } else {
+                    clearError(confirmPasswordInput);
+                    return true;
+                }
+            }
+
+            function validatePhone() {
+                const phone = phoneInput.value.trim();
+                if (!phoneRegex.test(phone)) {
+                    displayError(phoneInput, 'Số điện thoại không hợp lệ.');
+                    return false;
+                } else {
+                    clearError(phoneInput);
+                    return true;
+                }
+            }
+
+            function capitalizeName() {
+                let name = nameInput.value.trim();
+                if (name) {
+                    name = name.toLowerCase().split(' ').map(word => {
+                        return word.charAt(0).toUpperCase() + word.slice(1);
+                    }).join(' ');
+                    nameInput.value = name;
+                }
+            }
+
+            form.addEventListener('submit', function(event) {
+                const isEmailValid = validateEmail();
+                const isPasswordValid = validatePassword();
+                const isConfirmPasswordValid = validateConfirmPassword();
+                const isPhoneValid = validatePhone();
+
+                if (!isEmailValid || !isPasswordValid || !isConfirmPasswordValid || !isPhoneValid) {
+                    event.preventDefault(); // Prevent form submission
+                }
+            });
+
+            nameInput.addEventListener('blur', capitalizeName); // Capitalize on blur
+            emailInput.addEventListener('input', validateEmail);
+            passwordInput.addEventListener('input', validatePassword);
+            confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+            phoneInput.addEventListener('input', validatePhone);
+
+            // Re-validate confirm password if password changes
+            passwordInput.addEventListener('input', function() {
+                if (confirmPasswordInput.value.trim() !== '') {
+                    validateConfirmPassword();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

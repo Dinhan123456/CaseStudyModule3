@@ -47,5 +47,69 @@
     </div>
 </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // At least one uppercase letter, one lowercase letter, one digit, one special character, and a minimum length of 8 characters
+            const passwordRegex = /^.{6,}$/;
+
+            function validateEmail() {
+                const email = emailInput.value.trim();
+                if (!emailRegex.test(email)) {
+                    displayError(emailInput, 'Email không hợp lệ.');
+                    return false;
+                } else {
+                    clearError(emailInput);
+                    return true;
+                }
+            }
+
+            function validatePassword() {
+                const password = passwordInput.value.trim();
+                if (!passwordRegex.test(password)) {
+                    displayError(passwordInput, 'Mật khẩu phải có ít nhất 6 ký tự.');
+                    return false;
+                } else {
+                    clearError(passwordInput);
+                    return true;
+                }
+            }
+
+            function displayError(inputElement, message) {
+                let errorDiv = inputElement.nextElementSibling;
+                if (!errorDiv || !errorDiv.classList.contains('invalid-feedback')) {
+                    errorDiv = document.createElement('div');
+                    errorDiv.classList.add('invalid-feedback');
+                    inputElement.parentNode.insertBefore(errorDiv, inputElement.nextSibling);
+                }
+                errorDiv.textContent = message;
+                inputElement.classList.add('is-invalid');
+            }
+
+            function clearError(inputElement) {
+                const errorDiv = inputElement.nextElementSibling;
+                if (errorDiv && errorDiv.classList.contains('invalid-feedback')) {
+                    errorDiv.remove();
+                }
+                inputElement.classList.remove('is-invalid');
+            }
+
+            form.addEventListener('submit', function(event) {
+                const isEmailValid = validateEmail();
+                const isPasswordValid = validatePassword();
+
+                if (!isEmailValid || !isPasswordValid) {
+                    event.preventDefault(); // Prevent form submission
+                }
+            });
+
+            emailInput.addEventListener('input', validateEmail);
+            passwordInput.addEventListener('input', validatePassword);
+        });
+    </script>
 </body>
 </html>
